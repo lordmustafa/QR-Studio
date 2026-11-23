@@ -13,6 +13,8 @@ Works offline. No ads, no sign-up, no watermark, and the codes never expire.
 [![License: MIT](https://img.shields.io/badge/license-MIT-16a34a)](LICENSE)
 ![Windows | macOS | Linux](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-475569)
 
+**[Use it online, no download](https://qr-studio-web-yliw.onrender.com)** · works on phones and computers
+
 **English** · [العربية](README.ar.md)
 
 <img src="docs/assets/styles.png" width="820" alt="QR codes made with QR Studio: classic, gradient, dots, leaf corners, with a logo, with a caption and frame">
@@ -33,6 +35,9 @@ The apps are free and not signed with a paid certificate, so the first launch sh
 
 - **Windows:** SmartScreen shows "Windows protected your PC". Click **More info**, then **Run anyway**.
 - **macOS:** right-click the app, choose **Open**, then **Open** again. You only do this once.
+
+No install? Use the **[web version](https://qr-studio-web-yliw.onrender.com)** in any browser, on a phone or a computer. It has the same
+code types, styles and checks, and it does not save what you type.
 
 On Linux, or to run from source, see [Run from source](#run-from-source).
 
