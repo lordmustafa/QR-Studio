@@ -1,0 +1,9 @@
+customtkinter>=5.2
+qrcode>=7.4
+Pillow>=10.1
+# Optional: reading QR codes (Scan page and the automatic scan check)
+opencv-python-headless>=4.8
+numpy>=1.24
+# Optional: correct Arabic letters in captions when Pillow has no libraqm
+arabic-reshaper>=3.0
+python-bidi>=0.4

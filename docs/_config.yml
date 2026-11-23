@@ -1,0 +1,13 @@
+title: QR Studio
+description: Free QR code generator for Windows and macOS. Links, Wi-Fi, vCard, WhatsApp, logos, SVG and PDF export. Offline, no ads.
+url: https://lordmustafa.github.io
+baseurl: /QR-Studio
+theme: jekyll-theme-primer
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+exclude:
+  - make_docs_images.py

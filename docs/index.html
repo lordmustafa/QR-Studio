@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR Studio – Free QR Code Generator for Windows and macOS</title>
+<meta name="description" content="Free, open-source QR code generator for Windows and macOS. Make QR codes for links, Wi-Fi, vCard contacts, WhatsApp, locations and events, with colors and a logo. Export PNG, SVG and PDF. Works offline, no ads, no sign-up.">
+<meta name="keywords" content="free qr code generator, qr code generator, qr code maker, qr code with logo, wifi qr code, vcard qr code, whatsapp qr code, svg qr code, batch qr code generator, offline qr code generator, qr code generator windows, qr code generator mac, مولد رموز QR مجاني">
+<link rel="canonical" href="https://lordmustafa.github.io/QR-Studio/">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<meta name="theme-color" content="#2563eb">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="QR Studio – Free QR Code Generator for Windows and macOS">
+<meta property="og:description" content="Make QR codes for links, Wi-Fi, contacts and WhatsApp, with your colors and logo. Offline, no ads, no sign-up.">
+<meta property="og:url" content="https://lordmustafa.github.io/QR-Studio/">
+<meta property="og:image" content="https://lordmustafa.github.io/QR-Studio/assets/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QR Studio – Free QR Code Generator">
+<meta name="twitter:description" content="Free, offline QR code generator for Windows and macOS with colors, logos, Wi-Fi, vCard and batch export.">
+<meta name="twitter:image" content="https://lordmustafa.github.io/QR-Studio/assets/social-preview.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "QR Studio",
+  "description": "Free, open-source QR code generator for Windows and macOS with colors, logos, Wi-Fi, vCard, WhatsApp, batch generation, a QR scanner, and PNG, SVG and PDF export.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Windows 10, Windows 11, macOS, Linux",
+  "softwareVersion": "1.0.0",
+  "inLanguage": ["en", "ar"],
+  "license": "https://opensource.org/licenses/MIT",
+  "url": "https://lordmustafa.github.io/QR-Studio/",
+  "downloadUrl": "https://github.com/lordmustafa/QR-Studio/releases/latest",
+  "codeRepository": "https://github.com/lordmustafa/QR-Studio",
+  "image": "https://lordmustafa.github.io/QR-Studio/assets/social-preview.png",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is QR Studio really free?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes. It is open source under the MIT license, with no ads, no account and no paid plan."}},
+    {"@type": "Question", "name": "Do the QR codes expire?",
+     "acceptedAnswer": {"@type": "Answer", "text": "No. QR Studio makes static QR codes. The content is stored inside the code, so nothing depends on a server."}},
+    {"@type": "Question", "name": "Can I add a logo to a QR code?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes. QR Studio raises error correction to H so the code still scans, and checks the result for you."}},
+    {"@type": "Question", "name": "Does it work offline?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes. Everything runs on your computer and nothing is uploaded."}}
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --bg: #f8fafc; --card: #ffffff; --line: #e2e8f0; --text: #0f172a; --muted: #475569;
+    --accent: #2563eb; --accent-hover: #1d4ed8; --accent-soft: #dbeafe; --on-accent: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b1120; --card: #111827; --line: #1f2937; --text: #e5e7eb; --muted: #9ca3af;
+      --accent: #3b82f6; --accent-hover: #60a5fa; --accent-soft: #1e293b; --on-accent: #ffffff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", sans-serif;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  header.top { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; gap: 12px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 19px; color: var(--text); text-decoration: none; }
+  .brand img { width: 34px; height: 34px; }
+  nav a { color: var(--muted); text-decoration: none; margin-inline-start: 18px; font-size: 15px; }
+  nav a:hover { color: var(--text); }
+
+  .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; padding: 48px 0 56px; }
+  .hero h1 { font-size: clamp(34px, 5vw, 54px); line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.02em; }
+  .hero p.lead { font-size: 19px; color: var(--muted); margin: 0 0 28px; max-width: 34em; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; padding: 0; list-style: none; }
+  .pills li { background: var(--accent-soft); color: var(--text); border-radius: 999px; padding: 4px 12px; font-size: 14px; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 12px;
+         font-weight: 600; text-decoration: none; border: 1px solid var(--line); color: var(--text); background: var(--card); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+  .btn:hover { border-color: var(--accent); }
+  .hero-card { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 28px; max-width: 420px; justify-self: center; width: 100%; }
+  .hero-card img { width: 100%; height: auto; display: block; border-radius: 12px; background: #fff; }
+  .hero-card p { margin: 14px 0 0; text-align: center; color: var(--muted); font-size: 14px; }
+
+  section { padding: 44px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 30px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+  .card h3 { margin: 0 0 6px; font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .gallery { width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--line); display: block; }
+  ol.steps { padding-inline-start: 22px; margin: 0; }
+  ol.steps li { margin-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  th, td { text-align: start; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 15px; vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  th { color: var(--muted); font-weight: 600; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { color: var(--muted); margin: 10px 0 0; }
+  .ar { direction: rtl; text-align: right; }
+  footer { padding: 28px 0 40px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; padding-top: 24px; }
+    .grid { grid-template-columns: 1fr 1fr; }
+    nav { display: none; }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    .btn { width: 100%; justify-content: center; }
+    .table-wrap { overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="./"><img src="assets/logo.png" alt="" width="34" height="34">QR Studio</a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#how">How to use</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/lordmustafa/QR-Studio">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h1>Free QR code generator for Windows and macOS</h1>
+        <p class="lead">Make QR codes for links, Wi-Fi, contacts, WhatsApp, locations and events.
+          Add your colors and logo, check that the code scans, and save it as PNG, SVG or PDF.</p>
+        <ul class="pills">
+          <li>Free and open source</li><li>Works offline</li><li>No ads, no sign-up</li><li>Codes never expire</li>
+        </ul>
+        <div class="buttons">
+          <a class="btn primary" href="https://github.com/lordmustafa/QR-Studio/releases/latest">Download for Windows and Mac</a>
+          <a class="btn" href="https://github.com/lordmustafa/QR-Studio">View on GitHub</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="assets/hero.png" alt="A blue gradient QR code with rounded dots and the QR Studio logo in the middle" width="720" height="720">
+        <p>Every code on this page was made with QR Studio and opens the project.</p>
+      </div>
+    </div>
+
+    <section id="features">
+      <h2>Everything a QR code maker needs</h2>
+      <p class="sub">One small app. Nothing to sign up for, nothing uploaded.</p>
+      <div class="grid">
+        <div class="card"><h3>10 code types</h3><p>Link, text, Wi-Fi, vCard contact, email, SMS, phone call, WhatsApp, location and calendar event.</p></div>
+        <div class="card"><h3>Your design</h3><p>6 ready styles, gradients, 7 dot shapes, 4 corner shapes, your colors and a transparent background.</p></div>
+        <div class="card"><h3>QR code with logo</h3><p>Put your logo in the middle. Error correction rises to H by itself so the code still scans.</p></div>
+        <div class="card"><h3>Checked for you</h3><p>The app scans every code it makes and shows ✓ Ready to use. It warns about low contrast.</p></div>
+        <div class="card"><h3>Print-ready export</h3><p>PNG at 300 dpi, true vector SVG, PDF, JPG, WEBP and BMP, from 256 to 4096 px.</p></div>
+        <div class="card"><h3>Batch QR codes</h3><p>Hundreds of codes at once from a list or a .txt or .csv file, all in your design.</p></div>
+        <div class="card"><h3>QR scanner</h3><p>Read QR codes from an image or a screenshot, then copy, open or edit them.</p></div>
+        <div class="card"><h3>Arabic and English</h3><p>The interface follows your system language. Light and dark themes.</p></div>
+        <div class="card"><h3>Private</h3><p>Runs on your computer. Wi-Fi passwords are never written to disk.</p></div>
+      </div>
+    </section>
+
+    <section id="styles">
+      <h2>Styles</h2>
+      <p class="sub">Classic, Ocean, Sunset, Forest, Royal and Ink, plus a logo, a caption and a frame.</p>
+      <img class="gallery" src="assets/styles.png" alt="Eight QR codes: classic black, blue gradient, orange dots, green leaf corners, purple circles, ink bars, one with a logo and one with a caption and frame" width="1340" height="776" loading="lazy">
+    </section>
+
+    <section id="how">
+      <h2>How to make a QR code</h2>
+      <p class="sub">It takes less than a minute.</p>
+      <ol class="steps">
+        <li><strong>Download</strong> QR Studio for Windows or Mac and open it.</li>
+        <li>On <strong>New code</strong>, pick what the code is for: a link, Wi-Fi, a contact, WhatsApp…</li>
+        <li><strong>Type the details.</strong> The preview updates as you type.</li>
+        <li><strong>Pick a style</strong>, or choose your own colors and add your logo.</li>
+        <li>When you see <strong>✓ Ready to use</strong>, click <strong>Download</strong>.</li>
+      </ol>
+      <p>Every option is explained in the <a href="USER_GUIDE.html">user guide</a>.</p>
+    </section>
+
+    <section id="download">
+      <h2>Download</h2>
+      <p class="sub">Free for personal and commercial use.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>System</th><th>File</th><th>First launch</th></tr>
+          <tr><td>Windows 10 / 11</td><td><code>QR Studio.exe</code>, one file, no install</td><td>SmartScreen: <em>More info → Run anyway</em></td></tr>
+          <tr><td>macOS, Apple Silicon</td><td><code>…macOS-arm64.dmg</code></td><td>Right-click the app → <em>Open</em></td></tr>
+          <tr><td>macOS, Intel</td><td><code>…macOS-x86_64.dmg</code></td><td>Right-click the app → <em>Open</em></td></tr>
+          <tr><td>Linux</td><td>Run from source with Python 3.10+</td><td><a href="BUILDING.html">Instructions</a></td></tr>
+        </table>
+      </div>
+      <p><a class="btn primary" href="https://github.com/lordmustafa/QR-Studio/releases/latest">Get the latest release</a></p>
+    </section>
+
+    <section id="faq">
+      <h2>Questions</h2>
+      <details><summary>Is QR Studio really free?</summary><p>Yes. It is open source under the MIT license, with no ads, no account and no paid plan.</p></details>
+      <details><summary>Do the QR codes expire?</summary><p>No. QR Studio makes static codes. The content is stored inside the code, so nothing depends on a server.</p></details>
+      <details><summary>Can I use the codes for business, menus or print?</summary><p>Yes, with no limits. For print, export SVG or PDF so the code stays sharp at any size.</p></details>
+      <details><summary>Can I make a Wi-Fi QR code?</summary><p>Yes. Enter the network name and password, and guests join by scanning, without typing.</p></details>
+      <details><summary>Can I make many QR codes at once?</summary><p>Yes. The Many codes page turns a list or a CSV file into a folder of codes.</p></details>
+    </section>
+
+    <section class="ar" lang="ar" dir="rtl">
+      <h2>برنامج مجاني لإنشاء رموز QR</h2>
+      <p class="sub">رموز للروابط والواي فاي وجهات الاتصال وواتساب، بألوانك وشعارك. يعمل بدون إنترنت، بلا إعلانات ولا تسجيل، والواجهة بالعربية.</p>
+      <p><a class="btn primary" href="https://github.com/lordmustafa/QR-Studio/releases/latest">تحميل مجاني لويندوز وماك</a></p>
+      <p><a href="https://github.com/lordmustafa/QR-Studio/blob/main/README.ar.md">اقرأ الشرح بالعربية</a></p>
+    </section>
+  </main>
+
+  <footer>
+    QR Studio is free software under the <a href="https://github.com/lordmustafa/QR-Studio/blob/main/LICENSE">MIT License</a>.
+    · <a href="https://github.com/lordmustafa/QR-Studio/issues">Report a problem</a>
+    · <a href="USER_GUIDE.html">User guide</a>
+  </footer>
+</div>
+</body>
+</html>

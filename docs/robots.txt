@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lordmustafa.github.io/QR-Studio/sitemap.xml

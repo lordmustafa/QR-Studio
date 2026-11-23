@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: User guide
+    url: https://github.com/lordmustafa/QR-Studio/blob/main/docs/USER_GUIDE.md
+    about: How to use every page and option

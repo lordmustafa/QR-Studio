@@ -1,0 +1,72 @@
+# Builds QR Studio for Windows (.exe) and macOS (.app in a .dmg).
+# Runs on every push to main, on version tags (v1.0.0 ...) and by hand.
+# Tagged builds are also attached to a GitHub release.
+name: Build apps
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            artifact: QR-Studio-Windows
+            files: dist/QR Studio.exe
+          - os: macos-latest      # Apple Silicon
+            artifact: QR-Studio-macOS-arm64
+            files: dist/*.dmg
+          - os: macos-15-intel    # Intel Macs
+            artifact: QR-Studio-macOS-x86_64
+            files: dist/*.dmg
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-build.txt
+
+      - name: Unit tests
+        run: python -m unittest discover tests
+
+      - name: Build
+        run: python packaging/build.py
+
+      - name: Self-test the Windows build
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath "dist/QR Studio.exe" -ArgumentList "--selftest", "selftest.txt" -Wait -PassThru
+          Get-Content selftest.txt
+          if ($p.ExitCode -ne 0) { exit 1 }
+
+      - name: Self-test the macOS build
+        if: runner.os == 'macOS'
+        run: |
+          "dist/QR Studio.app/Contents/MacOS/QR Studio" --selftest selftest.txt || (cat selftest.txt; exit 1)
+          cat selftest.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.files }}
+
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.files }}
